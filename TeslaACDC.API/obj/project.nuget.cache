@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "XLyst0MaIOY=",
+  "success": true,
+  "projectFilePath": "/Users/dracvs/Projects/EAFIT/2025 Q1/NODO_G1_2025_M3_TESLA/TeslaACDC.API/TeslaACDC.API.csproj",
+  "expectedPackageFiles": [
+    "/Users/dracvs/.nuget/packages/microsoft.aspnetcore.openapi/9.0.0/microsoft.aspnetcore.openapi.9.0.0.nupkg.sha512",
+    "/Users/dracvs/.nuget/packages/microsoft.openapi/1.6.17/microsoft.openapi.1.6.17.nupkg.sha512"
+  ],
+  "logs": []
+}
