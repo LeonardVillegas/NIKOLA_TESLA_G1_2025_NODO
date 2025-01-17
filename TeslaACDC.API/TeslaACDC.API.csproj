@@ -12,5 +12,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TeslaACDC.Data\TeslaACDC.Data.csproj"></ProjectReference>
+    <ProjectReference Include="..\TeslaACDC.Business\TeslaACDC.Business.csproj" />
   </ItemGroup>
 </Project>
