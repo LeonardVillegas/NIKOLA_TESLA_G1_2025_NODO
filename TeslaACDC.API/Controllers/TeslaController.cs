@@ -2,7 +2,7 @@ namespace TeslaACDC.Controllers;
 
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
-using TeslaACDC.Model;
+using TeslaACDC.Data.Models;
 
 [ApiController] // @Controller
 [Route("api/[controller]")]

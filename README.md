@@ -39,4 +39,9 @@ dotnet new classlib -o TeslaACDC.Business
 #Registrar eso en la solución 
 dotnet sln add TeslaACDC.Business/
 
+# Agregar una librería de clase
+dotnet new classlib -o TeslaACDC.Data
+
+#Registrar eso en la solución 
+dotnet sln add TeslaACDC.Data/
 ```

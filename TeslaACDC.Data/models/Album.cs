@@ -1,4 +1,7 @@
-namespace TeslaACDC.Model;
+using System;
+
+namespace TeslaACDC.Data.Models;
+
 public class Album
 {
     int _longitud = 0;
