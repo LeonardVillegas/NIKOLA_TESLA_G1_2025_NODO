@@ -2,6 +2,7 @@ namespace TeslaACDC.Controllers;
 
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using TeslaACDC.Business.Services;
 using TeslaACDC.Data.Models;
 
 [ApiController] // @Controller
@@ -13,7 +14,9 @@ public class TeslaController : ControllerBase
     [Route("GetAlbum")]
     public async Task<IActionResult> GetAlbum()
     {
-        return Ok();
+        var albumService = new AlbumService();
+        var lista = await albumService.GetList();
+        return Ok(lista);
     }
     [HttpGet]
     [Route("ListAlbums")]

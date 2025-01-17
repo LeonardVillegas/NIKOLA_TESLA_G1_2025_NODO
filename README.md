@@ -44,4 +44,7 @@ dotnet new classlib -o TeslaACDC.Data
 
 #Registrar eso en la solución 
 dotnet sln add TeslaACDC.Data/
+# Agregar un proyecto de testing
+
+
 ```
