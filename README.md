@@ -33,5 +33,10 @@ dotnet watch --project TeslaACDC.API # si estoy en la carpeta raíz del proyecto
 # Eliminar todos los archivos temporales de construcción
 dotnet clean
 
+# Agregar una librería de clase
+dotnet new classlib -o TeslaACDC.Business
+
+#Registrar eso en la solución 
+dotnet sln add TeslaACDC.Business/
 
 ```
