@@ -2,6 +2,7 @@ namespace TeslaACDC.Controllers;
 
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using TeslaACDC.Business.Interfaces;
 using TeslaACDC.Business.Services;
 using TeslaACDC.Data.Models;
 
@@ -9,13 +10,19 @@ using TeslaACDC.Data.Models;
 [Route("api/[controller]")]
 public class TeslaController : ControllerBase
 {
+    private readonly  IAlbumService _albumService;
+    public TeslaController(IAlbumService albumService)
+    {
+        _albumService = albumService;
+
+    }
     
     [HttpGet]
     [Route("GetAlbum")]
     public async Task<IActionResult> GetAlbum()
     {
-        var albumService = new AlbumService();
-        var lista = await albumService.GetList();
+        
+        var lista = await _albumService.GetList();
         return Ok(lista);
     }
     [HttpGet]
@@ -71,7 +78,7 @@ public class TeslaController : ControllerBase
         EXTRA CURRICULAR
         Crear una clase extra, y poner la lógica afuera del controlador.
         4to: Calcular area de un triangulo
-        5to: capturar con errores.
+        6to: Calcular el area de un cuadrado recibiendo todos los lados. 
     */
     
 }
