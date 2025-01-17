@@ -13,26 +13,7 @@ public class TeslaController : ControllerBase
     [Route("GetAlbum")]
     public async Task<IActionResult> GetAlbum()
     {
-        Album album = new () 
-        {
-            Nombre = "Mañana será bonito",
-            Genero = "Urbano",
-            Anio = 2022
-        };
-
-        var album2 = new Album() 
-        {
-            Nombre = "Mañana será bonito",
-            Genero = "Urbano",
-            Anio = 2022
-        };
-
-        var numero = 0;
-        var palabra = "Ni nombre es";
-        var letra = 'a';
-        var esCierto = false;
-        
-        return Ok(album);
+        return Ok();
     }
     [HttpGet]
     [Route("ListAlbums")]
