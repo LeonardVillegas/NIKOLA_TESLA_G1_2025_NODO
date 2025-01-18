@@ -1,4 +1,8 @@
+
+
 # Codename: Nikola Tesla's ACDC
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/dracvs/NIKOLA_TESLA_G1_2025_NODO/.github%2Fworkflows%2Fdotnet.yml)
+
 
 ## Abstract
 
