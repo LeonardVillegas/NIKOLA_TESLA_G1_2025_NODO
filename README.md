@@ -49,8 +49,8 @@ dotnet sln add TeslaACDC.Data/
 # Guardar la colección de Bruno en Ese proyecto.
 ```
 
-
-## Tarea 
+# Leonard villegas tarea
+## Tarea
 Para la casa, entregable el lunes 20 de Enero de 2025 5:59
 
 
