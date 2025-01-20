@@ -5,7 +5,7 @@ name: .NET
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "leo-playground" ]
   pull_request:
     branches: [ "main" ]
 
