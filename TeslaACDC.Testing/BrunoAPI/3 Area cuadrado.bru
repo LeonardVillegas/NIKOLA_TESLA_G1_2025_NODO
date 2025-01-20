@@ -1,0 +1,22 @@
+meta {
+  name: 3 Area cuadrado
+  type: http
+  seq: 5
+}
+
+post {
+  url: http://localhost:5136/api/tesla/SquareArea
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "baseC":10,
+    "alturaC":10
+  }
+}

@@ -1,0 +1,22 @@
+meta {
+  name: 4 Area de un triángulo
+  type: http
+  seq: 7
+}
+
+post {
+  url: http://localhost:5136/api/tesla/TriangleArea
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "baseT": 10.0,
+    "alturaT":1.0
+  }
+}

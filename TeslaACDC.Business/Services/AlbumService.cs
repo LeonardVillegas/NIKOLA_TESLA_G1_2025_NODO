@@ -10,7 +10,7 @@ public class AlbumService : IAlbumService
         throw new NotImplementedException();
     }
 
-    public async Task<List<Album>> GetList()
+    public async Task<List<Album>> GetAlbumList()
     {
         var listaAlbums = new List<Album>(){
             new Album {Nombre = "Dark Saga", Anio = 1996, Genero = "Speed Metal"},
