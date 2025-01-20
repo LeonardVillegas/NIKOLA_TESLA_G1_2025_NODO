@@ -54,12 +54,12 @@ dotnet sln add TeslaACDC.Data/
 Para la casa, entregable el lunes 20 de Enero de 2025 5:59
 
 
-1ro: debe devolver una array de albums
-2do: debe recibir dos valores y sumarlos, devolver el resultado
-3ro: debe calcular el area de un cuadrado.
+1ro (done): debe devolver una array de albums
+2do (done): debe recibir dos valores y sumarlos, devolver el resultado
+3ro (done): debe calcular el area de un cuadrado.
 4to: Calcular area de un triangulo
 5to: Calcular el área de un cuadrado recibiendo todos los lados.
 Extra Curricular
 6to: PONER EL PIPELINE DE GITHUB A FUNCIONAR
 
-## Links importantes 
+## Links importantes

@@ -10,10 +10,15 @@ using TeslaACDC.Data.Models;
 public class TeslaController : ControllerBase
 {
     private readonly IAlbumService _albumService;
+    private readonly IMatematika _matematika;
 
-    public TeslaController(IAlbumService albumService)
+    public TeslaController(
+    IAlbumService albumService,
+    IMatematika matematika
+    )
     {
         _albumService = albumService;
+        _matematika = matematika;
     }
 
     [HttpGet]
@@ -29,6 +34,18 @@ public class TeslaController : ControllerBase
     public async Task<IActionResult> ReciboValor(Album album)
     {
         return Ok("Mi nombre es: " + album.Nombre);
+        // return BadRequest("Esto es un error 400");
+    }
+
+    [HttpPost]
+    [Route("SumaDosNumeros")]
+    public async Task<IActionResult> SumaDosNumeros(SumaDTO sumaDTO)
+    {
+        var sumatoria = _matematika.SumDosNumeros(sumaDTO.numeroa, sumaDTO.numerob);
+        //var sumatoria = sumaDTO.numeroa + sumaDTO.numerob;
+        return Ok(sumatoria);
+
+        //return Ok("Mi nombre es: " + album.Nombre);
         // return BadRequest("Esto es un error 400");
     }
 
@@ -63,15 +80,30 @@ public class TeslaController : ControllerBase
 
     [HttpPost]
     [Route("AreaCuadrado")]
-    public async Task<IActionResult> SquareArea(float sideLenght)
+    public async Task<IActionResult> SquareArea([FromBody] float sideLenght)
     {
         var area = Math.Pow(sideLenght, 2);
         return Ok(area);
     }
 
 
-   
-    
-    
+    [HttpPost]
+    [Route("AreaCuadrados")]
+    public async Task<IActionResult> AreaCuadrado(AreaCuadradoDTO areaDTO)
+    {
+        var area = _matematika.areaCuadrado(areaDTO.baseC, areaDTO.alturaC);
+        //var sumatoria = sumaDTO.numeroa + sumaDTO.numerob;
+        return Ok(area);
+
+        //return Ok("Mi nombre es: " + album.Nombre);
+        // return BadRequest("Esto es un error 400");
+    }
+
+
+
+
+
+
+
 }
 

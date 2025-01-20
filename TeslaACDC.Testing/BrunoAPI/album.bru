@@ -1,0 +1,21 @@
+meta {
+  name: album
+  type: http
+  seq: 6
+}
+
+post {
+  url: http://localhost:5136/api/tesla/AreaCuadrado
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "sideLenght":9.8
+  }
+}

@@ -12,14 +12,12 @@ public class AlbumService : IAlbumService
 
     public async Task<List<Album>> GetList()
     {
-        Album album = new () 
-        {
-            Nombre = "Mañana será bonito",
-            Genero = "Urbano",
-            Anio = 2022
+        var listaAlbums = new List<Album>(){
+            new Album {Nombre = "Dark Saga", Anio = 1996, Genero = "Speed Metal"},
+            new Album {Nombre = "Night of the StormRider", Anio = 1993, Genero = "Speed Metal"},
+            new Album {Nombre = "Horror Show", Anio = 2001, Genero = "Speed Metal"}
         };
-        return new List<Album>{album};
+        return listaAlbums;
     }
 }
 
-    
