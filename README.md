@@ -53,7 +53,11 @@ dotnet sln add TeslaACDC.Data/
 
 - Un DTO (Data Transport Object) No tiene métodos.
 - Por lo regular se guardan como structs
-
+- un booleano, se debe escribir siempre como un verbo y una pregunta dicotómica i.e:
+    - IsAdmin yes/no
+    - IsCorrect yes/no
+    - IsEnabled yes/no
+    - HasAttributes yes/no
 
 ## Tarea 
 Para la casa, entregable el lunes 20 de Enero de 2025 5:59
@@ -74,3 +78,10 @@ Extra Curricular
 - Quitar la palabra DTO en el nombre del DTO a los DTOS
 - Corregir que los Business solo devuelvan el resultado y nada más. Quitar los mensajes de String.
 - LINQ (LINK o LIN-Q)
+- acciones de un CRUD
+    - Buscar por ID
+    - Buscar por Nombre
+    - Agregar
+    - Editar
+    - Eliminar
+    - Buscar por Artista
