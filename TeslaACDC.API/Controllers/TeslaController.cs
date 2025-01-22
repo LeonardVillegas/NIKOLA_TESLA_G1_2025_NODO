@@ -39,59 +39,17 @@ public class TeslaController : ControllerBase
 
     [HttpPost]
     [Route("AddTwoNumbers")]
-    public async Task<IActionResult> AddTwoNumbers(SumaDTO sumaDTO)
+    public async Task<IActionResult> AddTwoNumbers(Suma payload)
     {
-        var sumatoria = _matematika.AddTwoNumbers(sumaDTO.numeroa, sumaDTO.numerob);
-        //var sumatoria = sumaDTO.numeroa + sumaDTO.numerob;
+        var sumatoria = await _matematika.AddTwoNumbers(payload.numeroa, payload.numerob);
         return Ok(sumatoria);
-
-        //return Ok("Mi nombre es: " + album.Nombre);
-        // return BadRequest("Esto es un error 400");
     }
-
-    //[HttpPost]
-    //[Route("ReciboUnValor")]
-    //public async Task<IActionResult> ReciboUnValor([FromBody]string album)
-    //{
-    //    return Ok(album);
-    //}
-
-    //[HttpGet]
-    //[Route("ListAlbums")]
-    //public async Task<IActionResult> GetList()
-    //{
-    //    var listaAlbums = new List<Album>(){
-    //        new Album {Nombre = "Dark Saga", Anio = 1996, Genero = "Speed Metal"},
-    //        new Album {Nombre = "Night of the StormRider", Anio = 1993, Genero = "Speed Metal"},
-    //        new Album {Nombre = "Horror Show", Anio = 2001, Genero = "Speed Metal"}
-    //    };
-
-        //listaAlbums.Add(new Album {Nombre = "Dark Saga", Anio = 1996, Genero = "Speed Metal"});
-    //    return Ok(listaAlbums);
-    //}
-
-    //[HttpPost]
-    //[Route("Sum")]
-    //public async Task<IActionResult> Sum([FromBody]float sumando, float sumando_2)
-    //{
-    //    var sumatoria = sumando + sumando_2;
-    //    return Ok(sumatoria);
-    //}
-
-    //[HttpPost]
-    //[Route("AreaCuadrado")]
-    //public async Task<IActionResult> SquareArea([FromBody] float sideLenght)
-    //{
-    //    var area = Math.Pow(sideLenght, 2);
-    //    return Ok(area);
-    //}
-
 
     [HttpPost]
     [Route("SquareArea")]
-    public async Task<IActionResult> SquareArea(AreaCuadradoDTO areaDTO)
+    public async Task<IActionResult> SquareArea(AreaCuadrado areaDTO)
     {
-        var area = _matematika.SquareArea(areaDTO.baseC, areaDTO.alturaC);
+        var area = await _matematika.SquareArea(areaDTO.baseC, areaDTO.alturaC);
         //var sumatoria = sumaDTO.numeroa + sumaDTO.numerob;
         return Ok(area);
 
@@ -103,19 +61,13 @@ public class TeslaController : ControllerBase
     [Route("TriangleArea")]
     public async Task<IActionResult> TriangleArea(TriangleAreaDTO triangeAreaDTO)
     {
-        var area = _matematika.TriangleArea(triangeAreaDTO.baseT, triangeAreaDTO.alturaT);
+        var area = await _matematika.TriangleArea(triangeAreaDTO.baseT, triangeAreaDTO.alturaT);
         //var sumatoria = sumaDTO.numeroa + sumaDTO.numerob;
         return Ok(area);
 
         //return Ok("Mi nombre es: " + album.Nombre);
         // return BadRequest("Esto es un error 400");
     }
-
-
-
-
-
-
 
 }
 

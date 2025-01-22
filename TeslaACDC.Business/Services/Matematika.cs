@@ -7,19 +7,19 @@ namespace TeslaACDC.Business.Services;
 
 public class Matematika : IMatematika
 {
-    public Task<float> AddTwoNumbers(float numeroa, float numerob)
+    public async Task<float> AddTwoNumbers(float numeroa, float numerob)
     {
-        return Task.FromResult(numeroa + numerob);
+        return numeroa + numerob;
     }
 
-    public Task<float> SquareArea(float numeroa, float numerob)
+    public async Task<float> SquareArea(float numeroa, float numerob)
     {
-        return Task.FromResult(numeroa * numerob);
+        return numeroa * numerob;
     }
 
-    public Task<float> SquareArea(float sideLenght)
+    public async Task<float> SquareArea(float sideLenght)
     {
-        throw new NotImplementedException();
+        return (sideLenght * sideLenght);
     }
 
     public async Task<float> Sum(float sumando, float sumando_2)
@@ -33,8 +33,8 @@ public class Matematika : IMatematika
         return sumatoria;
     }
 
-    public Task<float> TriangleArea(float baseT, float alturaT)
+    public async Task<float> TriangleArea(float baseT, float alturaT)
     {
-        return Task.FromResult((baseT * alturaT) / 2);
+        return ((baseT * alturaT) / 2);
     }
 }
