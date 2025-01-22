@@ -4,16 +4,20 @@ using Microsoft.AspNetCore.Mvc;
 using TeslaACDC.Business.Interfaces;
 using TeslaACDC.Business.Services;
 using TeslaACDC.Data.Models;
+using TeslaACDC.Data.DTO;
+using System.Net;
 
 [ApiController] // @Controller
 [Route("api/[controller]")]
 public class TeslaController : ControllerBase
 {
     private readonly IAlbumService _albumService;
+    private readonly IMatematika _matematikaService;
 
-    public TeslaController(IAlbumService albumService)
+    public TeslaController(IAlbumService albumService, IMatematika matematikaService)
     {
         _albumService = albumService;
+        _matematikaService = matematikaService;
     }
 
     [HttpGet]
@@ -43,14 +47,7 @@ public class TeslaController : ControllerBase
     [Route("ListAlbums")]
     public async Task<IActionResult> GetList()
     {
-        var listaAlbums = new List<Album>(){
-            new Album {Nombre = "Dark Saga", Anio = 1996, Genero = "Speed Metal"},
-            new Album {Nombre = "Night of the StormRider", Anio = 1993, Genero = "Speed Metal"},
-            new Album {Nombre = "Horror Show", Anio = 2001, Genero = "Speed Metal"}
-        };
-
-        //listaAlbums.Add(new Album {Nombre = "Dark Saga", Anio = 1996, Genero = "Speed Metal"});
-        return Ok(listaAlbums);
+        return Ok(await _albumService.GetList());
     }
 
     [HttpPost]
@@ -67,6 +64,32 @@ public class TeslaController : ControllerBase
     {
         var area = Math.Pow(sideLenght, 2);
         return Ok(area);
+    }
+
+    [HttpPost]
+    [Route("Multiplicar")]
+    public async Task<IActionResult> Multiply()
+    {
+        var operationMatematika = 5f + 5f + await _matematikaService.Multiply(40f, 20f);
+        return Ok();
+    }
+
+    [HttpPost]
+    [Route("VoyAFallar")]
+    public async Task<IActionResult> Fallo(int dividendo)
+    {
+        var resultado = await _matematikaService.Divide(dividendo);
+        return resultado.StatusCode == HttpStatusCode.OK ? Ok(resultado) : 
+            StatusCode((int)resultado.StatusCode, resultado);
+
+        // if(resultado.StatusCode == HttpStatusCode.OK)
+        // {
+        //     return Ok(resultado);
+        // }
+        // else
+        // {
+        //     return StatusCode((int)resultado.StatusCode, resultado);
+        // }
     }
 
 

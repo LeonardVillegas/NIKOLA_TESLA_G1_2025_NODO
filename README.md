@@ -49,6 +49,11 @@ dotnet sln add TeslaACDC.Data/
 # Guardar la colección de Bruno en Ese proyecto.
 ```
 
+# Convenciones
+
+- Un DTO (Data Transport Object) No tiene métodos.
+- Por lo regular se guardan como structs
+
 
 ## Tarea 
 Para la casa, entregable el lunes 20 de Enero de 2025 5:59
@@ -61,3 +66,11 @@ Para la casa, entregable el lunes 20 de Enero de 2025 5:59
 5to: Calcular el área de un cuadrado recibiendo todos los lados.
 Extra Curricular
 6to: PONER EL PIPELINE DE GITHUB A FUNCIONAR
+
+# Semana #2
+
+- Corregir el ASYNC y el AWAIT en todos mis métodos y todos mis controladores
+- Quitar los metodos del DTO
+- Quitar la palabra DTO en el nombre del DTO a los DTOS
+- Corregir que los Business solo devuelvan el resultado y nada más. Quitar los mensajes de String.
+- LINQ (LINK o LIN-Q)
