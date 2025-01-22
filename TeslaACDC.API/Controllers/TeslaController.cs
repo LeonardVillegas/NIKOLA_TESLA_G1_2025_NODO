@@ -49,7 +49,7 @@ public class TeslaController : ControllerBase
     [Route("SquareArea")]
     public async Task<IActionResult> SquareArea(AreaCuadrado areaDTO)
     {
-        var area = await _matematika.SquareArea(areaDTO.baseC, areaDTO.alturaC);
+        var area = await _matematika.Divide(areaDTO.baseC, areaDTO.alturaC);
         //var sumatoria = sumaDTO.numeroa + sumaDTO.numerob;
         return Ok(area);
 

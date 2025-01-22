@@ -1,4 +1,8 @@
 using System;
+using System.Net;
+
+
+using System.Security;
 using TeslaACDC.Business.Interfaces;
 using TeslaACDC.Data.Models;
 
@@ -12,9 +16,43 @@ public class Matematika : IMatematika
         return numeroa + numerob;
     }
 
-    public async Task<float> SquareArea(float numeroa, float numerob)
+    public async Task<BaseMessage<string>> Divide(float numeroa, float numerob)
     {
-        return numeroa * numerob;
+        if (numerob == 0)
+        {
+            return new BaseMessage<string>
+            {
+                Message = "No se puede dividir entre cero",
+                StatusCode = HttpStatusCode.InternalServerError,
+                TotalElements = 0,
+                ResponseElements = new() { }
+            };
+        }
+        var side = 10;
+        float cociente = 0f;
+        try
+        {
+            cociente = side / numerob;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+            return new BaseMessage<string>
+            {
+                Message = $"[Error] {ex.Message}",
+                StatusCode = HttpStatusCode.InternalServerError,
+                TotalElements = 0,
+                ResponseElements = new() { }
+            };
+        }
+
+        return new BaseMessage<string>
+        {
+            Message = "",
+            StatusCode = HttpStatusCode.OK,
+            TotalElements = 0,
+            ResponseElements = new() { cociente.ToString() }
+        };
     }
 
     public async Task<float> SquareArea(float sideLenght)
