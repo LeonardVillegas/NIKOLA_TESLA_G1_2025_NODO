@@ -5,19 +5,26 @@ namespace TeslaACDC.Business.Services;
 
 public class AlbumService : IAlbumService
 {
+    private List<Album> _albumList = new ();
+    public AlbumService()
+    {
+        _albumList.Add(new Album {Nombre = "Insahn", Anio = 1996, Genero = "Black Metal", Id=3});
+        _albumList.Add(new Album {Nombre = "Cowboy Carter", Anio = 1996, Genero = "pop", Id=1});
+        _albumList.Add(new Album {Nombre = "Metanoia", Anio = 1996, Genero = "Prog", Id=2});
+    }
     public async Task<List<Album>> AddAlbum()
     {
         throw new NotImplementedException();
     }
 
-    public async Task<List<Album>> GetAlbumList()
+    public async Task<BaseMessage<Album>> GetAlbumList()
     {
-        var listaAlbums = new List<Album>(){
-            new Album {Nombre = "Dark Saga", Anio = 1996, Genero = "Speed Metal"},
-            new Album {Nombre = "Night of the StormRider", Anio = 1993, Genero = "Speed Metal"},
-            new Album {Nombre = "Horror Show", Anio = 2001, Genero = "Speed Metal"}
+        return new BaseMessage<Album>() {
+            Message="",
+            StatusCode=System.Net.HttpStatusCode.OK,
+            TotalElements=_albumList.Count,
+            ResponseElements=_albumList
         };
-        return listaAlbums;
     }
 }
 
