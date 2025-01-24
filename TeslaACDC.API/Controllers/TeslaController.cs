@@ -28,14 +28,14 @@ public class TeslaController : ControllerBase
         var lista = await _albumService.GetAlbumList();
         return Ok(lista);
     }
+    [HttpGet]
+    [Route("SearchAlbum")]
+    public async Task<IActionResult> GetAlbumById([FromQuery] int? id, [FromQuery] string? name)
+    {
 
-    //[HttpPost]
-    //[Route("ReciboValor")]
-    //public async Task<IActionResult> ReciboValor(Album album)
-    //{
-    //    return Ok("Mi nombre es: " + album.Nombre);
-        // return BadRequest("Esto es un error 400");
-    //}
+            var lista = await _albumService.GetAlbumById(id, name);
+            return Ok(lista);
+    }
 
     [HttpPost]
     [Route("AddTwoNumbers")]
