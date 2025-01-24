@@ -47,9 +47,9 @@ public class TeslaController : ControllerBase
 
     [HttpPost]
     [Route("SquareArea")]
-    public async Task<IActionResult> SquareArea(AreaCuadrado areaDTO)
+    public async Task<IActionResult> SquareArea(AreaCuadrado valores)
     {
-        var area = await _matematika.Divide(areaDTO.baseC, areaDTO.alturaC);
+        var area = await _matematika.Divide(valores.baseC, valores.alturaC);
         //var sumatoria = sumaDTO.numeroa + sumaDTO.numerob;
         return Ok(area);
 
@@ -59,9 +59,9 @@ public class TeslaController : ControllerBase
 
     [HttpPost]
     [Route("TriangleArea")]
-    public async Task<IActionResult> TriangleArea(TriangleAreaDTO triangeAreaDTO)
+    public async Task<IActionResult> TriangleArea(TriangleArea triangeArea)
     {
-        var area = await _matematika.TriangleArea(triangeAreaDTO.baseT, triangeAreaDTO.alturaT);
+        var area = await _matematika.TriangleArea(triangeArea.baseT, triangeArea.alturaT);
         //var sumatoria = sumaDTO.numeroa + sumaDTO.numerob;
         return Ok(area);
 
