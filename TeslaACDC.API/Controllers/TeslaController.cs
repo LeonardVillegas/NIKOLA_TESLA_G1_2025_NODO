@@ -29,10 +29,19 @@ public class TeslaController : ControllerBase
         return Ok(lista);
     }
     [HttpGet]
-    [Route("SearchAlbum")]
-    public async Task<IActionResult> GetAlbumById([FromQuery] int? id, [FromQuery] string? name)
+    [Route("SearchAlbumById")]
+    //public async Task<IActionResult> GetAlbumById([FromQuery] int? id, [FromQuery] string? name)
+    public async Task<IActionResult> GetAlbumById(int id)
     {
-            var lista = await _albumService.GetAlbumById(id, name);
+            var lista = await _albumService.GetAlbumById(id);
+            return Ok(lista);
+    }
+    [HttpGet]
+    [Route("SearchAlbumByName")]
+    //public async Task<IActionResult> GetAlbumById([FromQuery] int? id, [FromQuery] string? name)
+    public async Task<IActionResult> GetAlbumByName(string name)
+    {
+            var lista = await _albumService.GetAlbumByName(name);
             return Ok(lista);
     }
 

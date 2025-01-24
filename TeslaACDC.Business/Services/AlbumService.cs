@@ -90,7 +90,8 @@ public class AlbumService : IAlbumService
         }
     }
 
-    public async Task<BaseMessage<Album>> GetAlbumById(int? Id, string? name)
+/*     
+public async Task<BaseMessage<Album>> GetAlbumById(int? Id, string? name)
     {
         // Define resoultMatch outside the conditional blocks
         IEnumerable<Album> resoultMatch;
@@ -122,9 +123,7 @@ public class AlbumService : IAlbumService
                 TotalElements = 0,
                 ResponseElements = new List<Album>()
             };
-        }
-
-
+        } 
 
         if (resoultMatch.Any())
         {
@@ -145,6 +144,51 @@ public class AlbumService : IAlbumService
             ResponseElements = new List<Album>()
         };
 
+    }
+*/
+    public async Task<BaseMessage<Album>> GetAlbumByName(string name)
+    {
+        var result = _albumList.Where(a => a.Nombre.ToLower().Contains(name.ToLower()));
+
+        if (result.Any())
+        {
+            var ReturnedValue = result.ToList();
+            return new BaseMessage<Album>(){
+                Message = "",
+                StatusCode = System.Net.HttpStatusCode.OK,
+                TotalElements = ReturnedValue.Count,
+                ResponseElements = ReturnedValue
+            };
+
+        }
+        return new BaseMessage<Album>(){
+                Message = "Object Not Found",
+                StatusCode = System.Net.HttpStatusCode.NotFound,
+                TotalElements =0,
+                ResponseElements = new List<Album>()
+            };
+    }
+    public async Task<BaseMessage<Album>> GetAlbumById(int id)
+    {
+        var result = _albumList.Where(a => a.Id == id);
+
+        if (result.Any())
+        {
+            var ReturnedValue = result.ToList();
+            return new BaseMessage<Album>(){
+                Message = "",
+                StatusCode = System.Net.HttpStatusCode.OK,
+                TotalElements = ReturnedValue.Count,
+                ResponseElements = ReturnedValue
+            };
+
+        }
+        return new BaseMessage<Album>(){
+                Message = "Object Not Found",
+                StatusCode = System.Net.HttpStatusCode.NotFound,
+                TotalElements =0,
+                ResponseElements = new List<Album>()
+            };
     }
 
     public async Task<BaseMessage<Album>> GetAlbumList()
