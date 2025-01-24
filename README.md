@@ -85,3 +85,16 @@ Extra Curricular
     - Editar
     - Eliminar
     - Buscar por Artista
+
+- Instalar BeeKeeper
+- Crear una cuenta de SupaBase [https://supabase.com]
+- Entity Framework + Migraciones.
+
+- Buscar por nombre
+- Buscar por año de publicación
+- Buscar por rango de publicación (año de inicio, año final)
+- Buscar por nombre de artista
+- Buscar por Genero (album)
+
+
+
