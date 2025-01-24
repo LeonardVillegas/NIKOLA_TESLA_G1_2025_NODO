@@ -50,11 +50,7 @@ public class TeslaController : ControllerBase
     public async Task<IActionResult> SquareArea(AreaCuadrado valores)
     {
         var area = await _matematika.Divide(valores.baseC, valores.alturaC);
-        //var sumatoria = sumaDTO.numeroa + sumaDTO.numerob;
         return Ok(area);
-
-        //return Ok("Mi nombre es: " + album.Nombre);
-        // return BadRequest("Esto es un error 400");
     }
 
     [HttpPost]
@@ -64,9 +60,6 @@ public class TeslaController : ControllerBase
         var area = await _matematika.TriangleArea(triangeArea.baseT, triangeArea.alturaT);
         //var sumatoria = sumaDTO.numeroa + sumaDTO.numerob;
         return Ok(area);
-
-        //return Ok("Mi nombre es: " + album.Nombre);
-        // return BadRequest("Esto es un error 400");
     }
 
 }
