@@ -8,5 +8,7 @@ public interface IAlbumService
 {
     Task<BaseMessage<Album>> GetAlbumList();
     Task<BaseMessage<Album>> GetAlbumById(int? Id, string? name);
-    Task<List<Album>> AddAlbum();
+    Task<BaseMessage<Album>> AddAlbum(Album album);
+    Task<BaseMessage<Album>> EditAlbum(int Id, Album album);
+    Task<BaseMessage<Album>> DeleteAlbum(int Id);
 }

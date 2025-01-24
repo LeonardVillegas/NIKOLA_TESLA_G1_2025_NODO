@@ -1,0 +1,27 @@
+meta {
+  name: Edit Album
+  type: http
+  seq: 9
+}
+
+put {
+  url: http://localhost:5136/api/tesla/EditAlbum/1
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "Nombre":"Prueba",
+    "Anio":2025,
+    "Genero":"Pop"
+  }
+}
+
+assert {
+  res.status: eq 200
+}

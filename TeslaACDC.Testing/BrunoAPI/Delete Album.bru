@@ -1,0 +1,19 @@
+meta {
+  name: Delete Album
+  type: http
+  seq: 8
+}
+
+delete {
+  url: http://localhost:5136/api/tesla/DeleteAlbum/1
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+assert {
+  res.status: eq 200
+}

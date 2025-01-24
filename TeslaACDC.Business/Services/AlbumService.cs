@@ -6,15 +6,88 @@ namespace TeslaACDC.Business.Services;
 public class AlbumService : IAlbumService
 {
     private List<Album> _albumList = new();
+    private int _conunter;
     public AlbumService()
     {
         _albumList.Add(new Album { Nombre = "Insahn", Anio = 1996, Genero = "Black Metal", Id = 3 });
         _albumList.Add(new Album { Nombre = "Cowboy Carter", Anio = 1996, Genero = "pop", Id = 1 });
         _albumList.Add(new Album { Nombre = "Metanoia", Anio = 1996, Genero = "Prog", Id = 2 });
+        _conunter = 3;
     }
-    public async Task<List<Album>> AddAlbum()
+    public async Task<BaseMessage<Album>> AddAlbum(Album album)
     {
-        throw new NotImplementedException();
+        album.Id = _conunter++;
+        _albumList.Add(album);
+        return new BaseMessage<Album>()
+        {
+            Message = "Album was Created",
+            StatusCode = System.Net.HttpStatusCode.Created,
+            TotalElements = 1,
+            ResponseElements = new List<Album>() { album }
+        };
+    }
+
+    public async Task<BaseMessage<Album>> DeleteAlbum(int Id)
+    {
+        var match = from value in _albumList where value.Id == Id select value;
+
+        if (match.Any())
+        {
+            var element = match.First();
+            _albumList.RemoveAll(item => item.Id == Id);
+            var response = new List<Album>();
+            response.Add(element);
+            return new BaseMessage<Album>()
+            {
+                Message = "Album Deleted",
+                StatusCode = System.Net.HttpStatusCode.OK,
+                TotalElements = 1,
+                ResponseElements = response
+            };
+        }
+        else
+        {
+            return new BaseMessage<Album>()
+            {
+                Message = "Id not found",
+                StatusCode = System.Net.HttpStatusCode.OK,
+                TotalElements = 1,
+                ResponseElements = new List<Album>()
+            };
+        }
+    }
+
+    public async Task<BaseMessage<Album>> EditAlbum(int Id, Album album)
+    {
+        var match = from value in _albumList where value.Id == Id select value;
+
+        if (match.Any())
+        {
+            var element = match.First();
+            _albumList.RemoveAll(item => item.Id == Id);
+            var item = album;
+            item.Id = Id;
+            var response = new List<Album>();
+            response.Add(item);
+
+            return new BaseMessage<Album>()
+            {
+                Message = "Album Edited",
+                StatusCode = System.Net.HttpStatusCode.OK,
+                TotalElements = 0,
+                ResponseElements = response
+            };
+        }
+        else
+        {
+            return new BaseMessage<Album>()
+            {
+                Message = "Invalid request",
+                StatusCode = System.Net.HttpStatusCode.OK,
+                TotalElements = 0,
+                ResponseElements = new List<Album>()
+            };
+        }
     }
 
     public async Task<BaseMessage<Album>> GetAlbumById(int? Id, string? name)

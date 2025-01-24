@@ -32,7 +32,6 @@ public class TeslaController : ControllerBase
     [Route("SearchAlbum")]
     public async Task<IActionResult> GetAlbumById([FromQuery] int? id, [FromQuery] string? name)
     {
-
             var lista = await _albumService.GetAlbumById(id, name);
             return Ok(lista);
     }
@@ -42,6 +41,30 @@ public class TeslaController : ControllerBase
     public async Task<IActionResult> AddTwoNumbers(Suma payload)
     {
         var sumatoria = await _matematika.AddTwoNumbers(payload.numeroa, payload.numerob);
+        return Ok(sumatoria);
+    }
+
+    [HttpPost]
+    [Route("AddAlbum")]
+    public async Task<IActionResult> AddAlbum(Album album)
+    {
+        var sumatoria = await _albumService.AddAlbum(album);
+        return Ok(sumatoria);
+    }
+
+    [HttpPut]
+    [Route("EditAlbum/{id}")]
+    public async Task<IActionResult> EditAlbum( int id, [FromBody] Album UpdatedAlbum)
+    {
+        var response = await _albumService.EditAlbum(id, UpdatedAlbum);
+        return Ok(response);
+    }
+
+    [HttpDelete]
+    [Route("DeleteAlbum/{id}")]
+    public async Task<IActionResult> DeleteAlbum(int id)
+    {
+        var sumatoria = await _albumService.DeleteAlbum(id);
         return Ok(sumatoria);
     }
 
@@ -58,7 +81,6 @@ public class TeslaController : ControllerBase
     public async Task<IActionResult> TriangleArea(TriangleArea triangeArea)
     {
         var area = await _matematika.TriangleArea(triangeArea.baseT, triangeArea.alturaT);
-        //var sumatoria = sumaDTO.numeroa + sumaDTO.numerob;
         return Ok(area);
     }
 

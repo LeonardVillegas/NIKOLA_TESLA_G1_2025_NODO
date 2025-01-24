@@ -1,0 +1,27 @@
+meta {
+  name: Add Album
+  type: http
+  seq: 7
+}
+
+post {
+  url: http://localhost:5136/api/tesla/AddAlbum
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "Nombre":"Prueba",
+    "Anio":2025,
+    "Genero":"Pop"
+  }
+}
+
+assert {
+  res.status: eq 200
+}
