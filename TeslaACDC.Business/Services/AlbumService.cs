@@ -23,7 +23,8 @@ public class AlbumService : IAlbumService
         _listaAlbum.Add(new (){Name = "Título de Amor", Genre = Genre.Vallenato, Year = 1993, Id = 0, ArtistId = 0});
         _listaAlbum.Add(new (){Name = "Vasos Vacíos", Genre = Genre.Metal, Year = 1998, Id = 0, ArtistId = 0});
         _listaAlbum.Add(new (){Name = "La tierra del olvido", Genre = Genre.Metal, Year = 1991, Id = 0, ArtistId = 0});
-        _listaAlbum.Add(new (){Name = "Pies descalzos", Genre = Genre.Metal, Year = 1995, Id = 0, ArtistId = 0});        
+        _listaAlbum.Add(new (){Name = "Pies descalzos", Genre = Genre.Metal, Year = 1995, Id = 0, ArtistId = 0});
+        _listaAlbum.Add(new (){Name = "Chemical Brothers", Genre = Genre.Electronica, Year = 1998, ArtistId = 0});        
     }
 
     public async Task<BaseMessage<Album>> AddAlbum()
@@ -80,6 +81,11 @@ public class AlbumService : IAlbumService
             BuildResponse(lista, "", HttpStatusCode.NotFound, 0);
     }
 
+    public Task<BaseMessage<Album>> FindByProperties(string name, int year)
+    {
+        throw new NotImplementedException();
+    }
+
     public async Task<BaseMessage<Album>> GetList()
     {
         return new BaseMessage<Album>() {
@@ -89,6 +95,8 @@ public class AlbumService : IAlbumService
             ResponseElements = _listaAlbum
         };
     }
+
+    
 
     private BaseMessage<Album> BuildResponse(List<Album> lista, string message = "", HttpStatusCode status = HttpStatusCode.OK, 
         int totalElements = 0)

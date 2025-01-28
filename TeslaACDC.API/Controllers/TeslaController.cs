@@ -24,7 +24,7 @@ public class TeslaController : ControllerBase
     [Route("getalbums")]
     public async Task<IActionResult> GetAllAlbums()
     {
-        return Ok(await  _albumService.GetList());
+        return Ok(await _albumService.GetList());
     }
 
     [HttpGet]
@@ -38,6 +38,14 @@ public class TeslaController : ControllerBase
     [HttpGet]
     [Route("GetAlbumByName")]
     public async Task<IActionResult> GetAlbumByName(string name)
+    {
+        var response = await _albumService.FindByName(name);
+        return StatusCode((int)response.StatusCode, response);
+    }
+
+    [HttpGet]
+    [Route("GetAlbumByName")]
+    public async Task<IActionResult> GetAlbumByNames(string name, int year)
     {
         var response = await _albumService.FindByName(name);
         return StatusCode((int)response.StatusCode, response);

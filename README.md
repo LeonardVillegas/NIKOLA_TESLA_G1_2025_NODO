@@ -47,6 +47,15 @@ dotnet sln add TeslaACDC.Data/
 
 # Agregar un proyecto de Testing
 # Guardar la colección de Bruno en Ese proyecto.
+
+# instalar dotnet Entity Framework como herramienta global para todos mis proyectos
+dotnet tool install -- dotnet-ef
+
+# NUGET: Manejador de paquetes para .net
+dotnet add package Npgsql.EntityFrameworkCore.PostgreSQL
+
+# Busca todos los paquetes de nuget y si no están se los baja.
+dotnet restore
 ```
 
 # Convenciones
