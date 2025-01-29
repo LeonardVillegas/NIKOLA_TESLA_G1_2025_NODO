@@ -13,8 +13,8 @@ public class TeslaController : ControllerBase
     private readonly IMatematika _matematika;
 
     public TeslaController(
-    IAlbumService albumService,
-    IMatematika matematika
+        IAlbumService albumService,
+        IMatematika matematika
     )
     {
         _albumService = albumService;
@@ -33,16 +33,16 @@ public class TeslaController : ControllerBase
     //public async Task<IActionResult> GetAlbumById([FromQuery] int? id, [FromQuery] string? name)
     public async Task<IActionResult> GetAlbumById(int id)
     {
-            var lista = await _albumService.GetAlbumById(id);
-            return Ok(lista);
+        var lista = await _albumService.GetAlbumById(id);
+        return Ok(lista);
     }
     [HttpGet]
     [Route("SearchAlbumByName")]
     //public async Task<IActionResult> GetAlbumById([FromQuery] int? id, [FromQuery] string? name)
     public async Task<IActionResult> GetAlbumByName(string name)
     {
-            var lista = await _albumService.GetAlbumByName(name);
-            return Ok(lista);
+        var lista = await _albumService.GetAlbumByName(name);
+        return Ok(lista);
     }
 
     [HttpPost]
@@ -63,7 +63,7 @@ public class TeslaController : ControllerBase
 
     [HttpPut]
     [Route("EditAlbum/{id}")]
-    public async Task<IActionResult> EditAlbum( int id, [FromBody] Album UpdatedAlbum)
+    public async Task<IActionResult> EditAlbum(int id, [FromBody] Album UpdatedAlbum)
     {
         var response = await _albumService.EditAlbum(id, UpdatedAlbum);
         return Ok(response);
