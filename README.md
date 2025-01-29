@@ -52,11 +52,31 @@ dotnet sln add TeslaACDC.Data/
 dotnet tool install -- dotnet-ef
 
 # NUGET: Manejador de paquetes para .net
-dotnet add package Npgsql.EntityFrameworkCore.PostgreSQL
+dotnet add package Npgsql.EntityFrameworkCore.PostgreSQL 
+#optional: agregar la bandera de la versión
+dotnet add package Npgsql.EntityFrameworkCore.PostgreSQL  --version 9.0.3
 
 # Busca todos los paquetes de nuget y si no están se los baja.
 dotnet restore
+
+# Agregar el Design en TeslaACDC.Data
+dotnet add package Microsoft.EntityFrameworkCore.Design
+
+# Agregar el Design y las librerias de utileria en TeslaACDC.API
+dotnet add package Microsoft.EntityFrameworkCore.Design
+dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
+dotnet add package Microsoft.EntityFrameworkCore.Design
+dotnet tool uninstall -g dotnet-aspnet-codegenerator
+dotnet add package Microsoft.EntityFrameworkCore.Tools
+
+# hacer la migración inicial para crear las tablas
+dotnet ef migrations add InitialCreate --project TeslaACDC.Data --startup-project TeslaACDC.API/
+
+# Ejecutar la migración el Postgres. Sin esto, la DB no se actualiza
+dotnet ef database update
 ```
+
+
 
 # Convenciones
 
@@ -82,6 +102,7 @@ Extra Curricular
 
 # Semana #2
 
+---
 - Corregir el ASYNC y el AWAIT en todos mis métodos y todos mis controladores
 - Quitar los metodos del DTO
 - Quitar la palabra DTO en el nombre del DTO a los DTOS
@@ -106,4 +127,28 @@ Extra Curricular
 - Buscar por Genero (album)
 
 
+# Semana 3
 
+---
+
+## Sobre Postgres
+
+*Para Windows:*
+Seguir la guía [https://shade-mass-f6b.notion.site/Instalar-Postgress-en-windows-13637fdf1cc28020adcdf53e6f2d9c33] y utilizar la instancia local. Esto es necesario para que no sea pesado.
+Si tu computador lo soporta, utilizar, docker, no es requerido.
+
+*Para Linux:*
+Seguir la guía: [https://www.postgresql.org/download/linux/] y utilizar una instancia local. Si tu distribución y computador soporta docker, utilizarlo. No es requerido
+
+*Para MacOS:*
+Si estás en Apple Silicon (M1, M2, M3, M4) utilizar docker. No hay de otra. 
+Si estás en Intel (iN) puedes usar una instancia local o docker. Como prefiereas.
+
+```Csharp
+// Agregar la conexión al program.cs 
+builder.Services.AddDbContext<NikolaContext>(
+    opt => opt.UseNpgsql(builder.Configuration.GetConnectionString("NikolaDatabase"))
+);
+```
+
+- Mover la conexión de la base de datos al Pipeline

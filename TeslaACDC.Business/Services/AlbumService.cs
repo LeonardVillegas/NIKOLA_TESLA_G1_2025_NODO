@@ -13,18 +13,18 @@ public class AlbumService : IAlbumService
 
     public AlbumService()
     {
-        _listaAlbum.Add(new (){Name = "Cowboy Carter", Genre = Genre.Pop, Year = 2024, Id = 1, ArtistId = 0});
-        _listaAlbum.Add(new (){Name = "Metanoia", Genre = Genre.Metal, Year = 2024, Id = 2, ArtistId = 0});
-        _listaAlbum.Add(new (){Name = "Ihsahn", Genre = Genre.Metal, Year = 2024, Id = 3, ArtistId = 0});
-        _listaAlbum.Add(new (){Name = "Dua Lipa live from the Royal Albert Hall", Genre = Genre.Pop, Year = 2024, Id = 4, ArtistId = 0});
-        _listaAlbum.Add(new (){Name = "Charcoal Grace", Genre = Genre.Metal, Year = 2024, Id = 5, ArtistId = 0});
-        _listaAlbum.Add(new (){Name = "From Zero", Genre = Genre.Metal, Year = 2024, Id = 6, ArtistId = 0});
-        _listaAlbum.Add(new (){Name = "Short n' Sweet", Genre = Genre.Pop, Year = 2024, Id = 0, ArtistId = 0});
-        _listaAlbum.Add(new (){Name = "Título de Amor", Genre = Genre.Vallenato, Year = 1993, Id = 0, ArtistId = 0});
-        _listaAlbum.Add(new (){Name = "Vasos Vacíos", Genre = Genre.Metal, Year = 1998, Id = 0, ArtistId = 0});
-        _listaAlbum.Add(new (){Name = "La tierra del olvido", Genre = Genre.Metal, Year = 1991, Id = 0, ArtistId = 0});
-        _listaAlbum.Add(new (){Name = "Pies descalzos", Genre = Genre.Metal, Year = 1995, Id = 0, ArtistId = 0});
-        _listaAlbum.Add(new (){Name = "Chemical Brothers", Genre = Genre.Electronica, Year = 1998, ArtistId = 0});        
+        _listaAlbum.Add(new (){Name = "Cowboy Carter", Genre = Genre.Pop, Year = 2024, Id = 1});
+        _listaAlbum.Add(new (){Name = "Metanoia", Genre = Genre.Metal, Year = 2024, Id = 2});
+        _listaAlbum.Add(new (){Name = "Ihsahn", Genre = Genre.Metal, Year = 2024, Id = 3});
+        _listaAlbum.Add(new (){Name = "Dua Lipa live from the Royal Albert Hall", Genre = Genre.Pop, Year = 2024, Id = 4});
+        _listaAlbum.Add(new (){Name = "Charcoal Grace", Genre = Genre.Metal, Year = 2024, Id = 5});
+        _listaAlbum.Add(new (){Name = "From Zero", Genre = Genre.Metal, Year = 2024, Id = 6});
+        _listaAlbum.Add(new (){Name = "Short n' Sweet", Genre = Genre.Pop, Year = 2024, Id = 0});
+        _listaAlbum.Add(new (){Name = "Título de Amor", Genre = Genre.Vallenato, Year = 1993, Id = 0});
+        _listaAlbum.Add(new (){Name = "Vasos Vacíos", Genre = Genre.Metal, Year = 1998, Id = 0});
+        _listaAlbum.Add(new (){Name = "La tierra del olvido", Genre = Genre.Metal, Year = 1991, Id = 0});
+        _listaAlbum.Add(new (){Name = "Pies descalzos", Genre = Genre.Metal, Year = 1995, Id = 0});
+        _listaAlbum.Add(new (){Name = "Chemical Brothers", Genre = Genre.Electronica, Year = 1998});        
     }
 
     public async Task<BaseMessage<Album>> AddAlbum()
