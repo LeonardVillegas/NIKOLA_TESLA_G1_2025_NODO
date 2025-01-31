@@ -152,3 +152,7 @@ builder.Services.AddDbContext<NikolaContext>(
 ```
 
 - Mover la conexión de la base de datos al Pipeline
+
+- Usando la guía del proyecto: 
+    - Crear el Servicio de Artista, Album, Canción
+    - Para cada modelo agregar: buscar por id, buscar por nombre, buscar por gango, agregar, editar, eliminar.

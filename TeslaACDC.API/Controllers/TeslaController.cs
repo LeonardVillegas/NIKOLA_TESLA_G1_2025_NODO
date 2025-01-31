@@ -44,7 +44,7 @@ public class TeslaController : ControllerBase
     }
 
     [HttpGet]
-    [Route("GetAlbumByName")]
+    [Route("GetAlbumByNameYear")]
     public async Task<IActionResult> GetAlbumByNames(string name, int year)
     {
         var response = await _albumService.FindByName(name);

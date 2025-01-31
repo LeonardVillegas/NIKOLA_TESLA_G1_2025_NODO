@@ -1,4 +1,3 @@
-using System.Dynamic;
 using Microsoft.EntityFrameworkCore;
 using TeslaACDC.Data.Models;
 
@@ -10,6 +9,7 @@ public class NikolaContext : DbContext
     }
     
     public DbSet<Album> Albums {get;set;}
+    public DbSet<Artist> Artists{get;set;}
 
     protected override void OnModelCreating(ModelBuilder builder)
     {

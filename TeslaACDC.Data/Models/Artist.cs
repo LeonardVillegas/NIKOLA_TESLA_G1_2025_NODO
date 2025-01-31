@@ -1,6 +1,8 @@
 using System.Reflection.Metadata.Ecma335;
 using TeslaACDC.Data.Models;
 
+namespace TeslaACDC.Data.Models;
+
 public class Artist : BaseEntity<int>
 {
     public string Name {get;set;} = string.Empty;
