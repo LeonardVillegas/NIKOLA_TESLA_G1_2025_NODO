@@ -4,36 +4,33 @@ using TeslaACDC.Data.Models;
 using System.Net;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
+using System.Runtime.InteropServices;
+using TeslaACDC.Data.IRepository;
+using TeslaACDC.Data.Repository;
+using Npgsql;
 
 namespace TeslaACDC.Business.Services;
 
 public class AlbumService : IAlbumService
 {
+    private IAlbumRepository<int, Album> _albumRepository;
     private List<Album> _listaAlbum = new();
-
-    public AlbumService()
+    public AlbumService(IAlbumRepository<int, Album> albumRepository)
     {
-        _listaAlbum.Add(new (){Name = "Cowboy Carter", Genre = Genre.Pop, Year = 2024, Id = 1});
-        _listaAlbum.Add(new (){Name = "Metanoia", Genre = Genre.Metal, Year = 2024, Id = 2});
-        _listaAlbum.Add(new (){Name = "Ihsahn", Genre = Genre.Metal, Year = 2024, Id = 3});
-        _listaAlbum.Add(new (){Name = "Dua Lipa live from the Royal Albert Hall", Genre = Genre.Pop, Year = 2024, Id = 4});
-        _listaAlbum.Add(new (){Name = "Charcoal Grace", Genre = Genre.Metal, Year = 2024, Id = 5});
-        _listaAlbum.Add(new (){Name = "From Zero", Genre = Genre.Metal, Year = 2024, Id = 6});
-        _listaAlbum.Add(new (){Name = "Short n' Sweet", Genre = Genre.Pop, Year = 2024, Id = 0});
-        _listaAlbum.Add(new (){Name = "Título de Amor", Genre = Genre.Vallenato, Year = 1993, Id = 0});
-        _listaAlbum.Add(new (){Name = "Vasos Vacíos", Genre = Genre.Metal, Year = 1998, Id = 0});
-        _listaAlbum.Add(new (){Name = "La tierra del olvido", Genre = Genre.Metal, Year = 1991, Id = 0});
-        _listaAlbum.Add(new (){Name = "Pies descalzos", Genre = Genre.Metal, Year = 1995, Id = 0});
-        _listaAlbum.Add(new (){Name = "Chemical Brothers", Genre = Genre.Electronica, Year = 1998});        
+        _albumRepository = albumRepository;
+        //_albumRepository = new AlbumRepository<int, Album>(_context);
     }
 
-    public async Task<BaseMessage<Album>> AddAlbum()
+    public async Task<BaseMessage<Album>> AddAlbum(Album album)
     {
         try{
-            _listaAlbum.Add(new (){Name = "Sunrise Over Rigor Mortis", Genre = Genre.Metal, Year = 2024, Id = 4});
-        }catch{
+            //var result = await _alb
+            await _albumRepository.AddAsync(album);
+        }
+        catch(Exception ex)
+        {
             return new BaseMessage<Album>() {
-                Message = "",
+                Message = $"[Exception]: {ex.Message}",
                 StatusCode = System.Net.HttpStatusCode.InternalServerError,
                 TotalElements = 0,
                 ResponseElements = new ()
@@ -44,8 +41,8 @@ public class AlbumService : IAlbumService
         return new BaseMessage<Album>() {
             Message = "",
             StatusCode = System.Net.HttpStatusCode.OK,
-            TotalElements = _listaAlbum.Count,
-            ResponseElements = _listaAlbum
+            TotalElements = 1,
+            ResponseElements = new List<Album>{album}
         };
         
     }
@@ -88,11 +85,22 @@ public class AlbumService : IAlbumService
 
     public async Task<BaseMessage<Album>> GetList()
     {
+        var lista = await _albumRepository.GetAllAsync();
+
+        foreach (var item in lista)
+        {
+            Console.WriteLine(item.Name);
+            Console.WriteLine(item.Year);
+            Console.WriteLine(item.Genre);
+            Console.WriteLine(item.ArtistId);
+            Console.WriteLine(item.Artist?.Name);
+
+        }
         return new BaseMessage<Album>() {
             Message = "",
             StatusCode = System.Net.HttpStatusCode.OK,
-            TotalElements = _listaAlbum.Count,
-            ResponseElements = _listaAlbum
+            TotalElements = lista.Count(),
+            ResponseElements = lista.ToList()
         };
     }
 
