@@ -8,6 +8,8 @@ using System.Runtime.InteropServices;
 using TeslaACDC.Data.IRepository;
 using TeslaACDC.Data.Repository;
 using Npgsql;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace TeslaACDC.Business.Services;
 
@@ -23,6 +25,12 @@ public class AlbumService : IAlbumService
 
     public async Task<BaseMessage<Album>> AddAlbum(Album album)
     {
+        var isValid = ValidateModel(album);
+        if(string.IsNullOrEmpty(isValid))
+        {
+            return BuildResponse(null, isValid, HttpStatusCode.BadRequest, new());
+        }
+
         try{
             //var result = await _alb
             await _albumRepository.AddAsync(album);
@@ -104,7 +112,7 @@ public class AlbumService : IAlbumService
         };
     }
 
-    
+   
 
     private BaseMessage<Album> BuildResponse(List<Album> lista, string message = "", HttpStatusCode status = HttpStatusCode.OK, 
         int totalElements = 0)
@@ -116,5 +124,39 @@ public class AlbumService : IAlbumService
             ResponseElements = lista
         };
     }
+
+    private string ValidateModel(Album album){
+        string message = string.Empty;
+
+        if(string.IsNullOrEmpty(album.Name))
+        {
+            message += "El nombre es requerido";
+        }
+        if(album.Year < 1901 || album.Year > DateAndTime.Now.Year)
+        {
+            message += "El año del disco debe estar entre 1901 y 2025";
+        }
+
+        return message;
+    }
+
+#region Learning to TEst
+    public async Task<string> HealthCheckTest()
+    {
+        return "OK";
+    }
+
+    public async Task<string> HealthCheckTest(bool IsOK)
+    {
+        return IsOK ? "OK!" : "Not cool";
+    }
+
+    public async Task<string> TestAlbumCreation(Album album)
+    {
+        return ValidateModel(album);
+    }
+#endregion
+
+
 }
 

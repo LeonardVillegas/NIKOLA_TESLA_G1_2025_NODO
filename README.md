@@ -156,14 +156,18 @@ builder.Services.AddDbContext<NikolaContext>(
 - Usando la guía del proyecto: 
     - Crear el Servicio de Artista, Album, Canción
     - Para cada modelo agregar: buscar por id, buscar por nombre, buscar por gango, agregar, editar, eliminar.
+
 - Condiciones para el artista:
     - El nombre del artista no peude estar vacío
     - El artista no puede estar repetido
+
 - Condiciones para el Album
     - El disco no puede tener una fecha anterior a 1901 y superior a 2025
-    - Agrear duración al disco en segundos, y representar en minutos segundos.
+    - Agrerar duración al disco en segundos, y representar en minutos segundos.
+
 - Condiciones para la canción:
     - debe tener: nombre, duración
     - La duración debe ser en segundos.
     - representar en minutos
+
 - Implementar todos los basemessages para cada servicio individual.
