@@ -26,7 +26,7 @@ public class AlbumService : IAlbumService
     public async Task<BaseMessage<Album>> AddAlbum(Album album)
     {
         var isValid = ValidateModel(album);
-        if(string.IsNullOrEmpty(isValid))
+        if(!string.IsNullOrEmpty(isValid))
         {
             return BuildResponse(null, isValid, HttpStatusCode.BadRequest, new());
         }
@@ -57,24 +57,13 @@ public class AlbumService : IAlbumService
 
     public async Task<BaseMessage<Album>> FindById(int id)
     {
-        //Album album;
-
-        // foreach (var item in _listaAlbum)
-        // {
-        //     if(item.Id == id)
-        //     {
-        //         album = item;
-        //     }
-        // }
-
-        // LINQ -> ORM Entity Framework
-        // Dapper -> ORM (Framework Distinto)
-        // IEnumerable
-        // Select * from Album WHERE Id == 1 AND Nombre == Shakira || Producido < COLIOMBIA
-        var lista = _listaAlbum.Where(x => x.Id == id).ToList();
+        Album? album = new();
+        album = await _albumRepository.FindAsync(id);
+        //_listaAlbum.Where(x => x.Id == id).ToList();
         
-        return lista.Any() ?  BuildResponse(lista, "", HttpStatusCode.OK, lista.Count) : 
-            BuildResponse(lista, "", HttpStatusCode.NotFound, 0);
+        return album != null ?  
+            BuildResponse(new List<Album>(){album}, "", HttpStatusCode.OK, 1) : 
+            BuildResponse(new List<Album>(), "", HttpStatusCode.NotFound, 0);
     }
 
     public async Task<BaseMessage<Album>> FindByName(string name)
