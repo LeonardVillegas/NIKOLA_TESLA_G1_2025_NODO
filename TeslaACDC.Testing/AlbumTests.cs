@@ -5,9 +5,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using NSubstitute.ExceptionExtensions;
 using TeslaACDC.Business.Services;
-using TeslaACDC.Data.IRepository;
 using TeslaACDC.Data.Models;
-using TeslaACDC.Data.Repository;
+
 
 namespace TeslaACDC.Tests;
 
