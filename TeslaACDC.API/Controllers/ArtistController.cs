@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using TeslaACDC.Business.Interfaces;
+using TeslaACDC.Data.Models;
 
 namespace TeslaACDC.Controllers;
 
@@ -20,5 +21,14 @@ public class ArtistController : ControllerBase
     {
         var artist = await _artistService.FindById(id);
         return Ok(artist);
+    }
+
+    [HttpPost]
+    [Route("AddArtist")]
+    public async Task<IActionResult> AddArtist(Artist artist)
+    {
+        var response = await _artistService.AddArtist(artist);
+        return Ok(response);
+
     }
 }
