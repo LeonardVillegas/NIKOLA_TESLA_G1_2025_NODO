@@ -1,7 +1,8 @@
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using TeslaACDC.Data.Models;
 
-public class NikolaContext : DbContext
+public class NikolaContext : IdentityDbContext<ApplicationUser>
 {
     public NikolaContext(DbContextOptions<NikolaContext> options) : base(options)
     {
@@ -21,7 +22,6 @@ public class NikolaContext : DbContext
         builder.Entity<Album>().ToTable("Album").HasKey(k => k.Id);
         builder.Entity<Artist>().ToTable("Artist").HasKey(k => k.Id);
         base.OnModelCreating(builder);
-
 
     }
 }

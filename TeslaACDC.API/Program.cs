@@ -1,7 +1,12 @@
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using TeslaACDC.Business.Interfaces;
 using TeslaACDC.Business.Services;
 using TeslaACDC.Data;
+using TeslaACDC.Data.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,17 +16,39 @@ builder.Services.AddOpenApi();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
-builder.Services.AddDbContext<NikolaContext>(
-    opt => opt.UseNpgsql(builder.Configuration.GetConnectionString("NikolaDatabase"))
-);
 
 // Inyección de dependencia
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IAlbumService, AlbumService>();
 builder.Services.AddTransient<IArtistService, ArtistService>();
 builder.Services.AddScoped<IMatematika, Matematika>();
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+    .AddEntityFrameworkStores<NikolaContext>()
+    .AddDefaultTokenProviders();
 
 
+builder.Services.AddAuthentication(options => {
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(options =>{
+    options.SaveToken = true;
+    options.RequireHttpsMetadata = false;
+    options.TokenValidationParameters = new TokenValidationParameters()
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidAudience = builder.Configuration["JWT:ValidAudience"],
+        ValidIssuer = builder.Configuration["JWT:ValidIssuer"],
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:SecretKey"]))
+
+    };
+});
+builder.Services.AddDbContext<NikolaContext>(
+    opt => opt.UseNpgsql(builder.Configuration.GetConnectionString("NikolaDatabase"))
+);
 
 
 var app = builder.Build();
