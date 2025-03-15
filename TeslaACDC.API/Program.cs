@@ -1,4 +1,5 @@
 using System.Text;
+using System.Windows.Markup;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -52,6 +53,7 @@ builder.Services.AddDbContext<NikolaContext>(
 
 
 var app = builder.Build();
+PopulateDB(app);
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -63,3 +65,14 @@ app.UseHttpsRedirection();
 app.MapControllers();
 app.Run();
 
+#region PopulateDB
+async void PopulateDB(WebApplication app)
+{
+    using(var scope = app.Services.CreateScope())
+    {
+        var seedMain = scope.ServiceProvider.GetRequiredService<IUserService>();
+        await seedMain.SeedAdmin();
+    }
+
+}
+#endregion
