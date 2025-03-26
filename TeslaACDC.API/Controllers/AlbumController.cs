@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TeslaACDC.Business.Interfaces;
@@ -7,6 +8,7 @@ namespace TeslaACDC.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class AlbumController : ControllerBase
     {
         private readonly IAlbumService _albumService;

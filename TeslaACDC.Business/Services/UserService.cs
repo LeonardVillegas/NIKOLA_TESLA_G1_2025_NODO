@@ -17,7 +17,7 @@ public class UserService : IUserService
     private IConfiguration _configuration;
 
     public UserService(
-        UserManager<ApplicationUser> userManager, 
+        UserManager<ApplicationUser> userManager,
         RoleManager<IdentityRole> roleManager,
         IConfiguration configuration
     )
@@ -30,7 +30,7 @@ public class UserService : IUserService
     public async Task<TokenResponse> Login(LoginModel loginModel)
     {
         var user = await _userManager.FindByNameAsync(loginModel.UserName) ;
-        if (user == null && await _userManager.CheckPasswordAsync(user, loginModel.Password))
+        if (user != null && await _userManager.CheckPasswordAsync(user, loginModel.Password))
         {
             var userRoles = await _userManager.GetRolesAsync(user);
             var authClaims = new List<Claim>
@@ -104,7 +104,7 @@ public class UserService : IUserService
     {
         await RegisterAdmin(new RegisterModel(){
             Email = "leonard@eafit.edu.co",
-            Password = "password",
+            Password = "fdkreeArd24%",
             UserName = "Leo"
         });
     }

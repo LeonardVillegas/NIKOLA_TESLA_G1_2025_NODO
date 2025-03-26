@@ -1,5 +1,4 @@
 using TeslaACDC.Data.Models;
-
 namespace TeslaACDC.Data;
 
 public interface IUnitOfWork

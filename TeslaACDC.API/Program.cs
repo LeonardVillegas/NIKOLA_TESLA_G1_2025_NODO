@@ -53,7 +53,7 @@ builder.Services.AddDbContext<NikolaContext>(
 
 
 var app = builder.Build();
-PopulateDB(app);
+// PopulateDB(app);
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
